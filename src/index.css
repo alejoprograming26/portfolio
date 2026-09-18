@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
+    --font-display: 'Syne', sans-serif;
+    --font-tech: 'Unbounded', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #000000;
+    color: #f4f4f5;
+  }
+}
+
+.font-display {
+  font-family: 'Syne', sans-serif;
+}
+
+.font-tech {
+  font-family: 'Unbounded', sans-serif;
+}
+
+.font-jakarta {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+.font-outfit {
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+}
+
+/* Technical dot grid and line patterns */
+.bg-dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.bg-dot-grid-subtle {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.bg-grid-lines {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Marquee continuous scroll */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Ambient glow pulsation */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
