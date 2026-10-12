@@ -3,10 +3,10 @@ import { PERSONAL_INFO } from '../data/portfolioData';
 
 export const AboutSection = () => {
   return (
-    <section id="sobre-mi" className="py-24 px-4 sm:px-6 max-w-6xl mx-auto border-b border-zinc-900">
+    <section id="sobre-mi" className="py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto border-b border-zinc-900">
       
       {/* Section Header Tag */}
-      <div className="flex items-center justify-between mb-12">
+      <div className="flex items-center justify-between mb-8 sm:mb-12">
         <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-lime-400">
           <span className="w-2 h-2 rounded-full bg-lime-400 animate-pulse" aria-hidden="true" />
           <span>Perfil Técnico &amp; Filosofía de Ingeniería</span>
@@ -72,9 +72,9 @@ export const AboutSection = () => {
         </div>
 
         {/* Right Column: Editorial Value Proposition, Deep Bio, Core Metrics & CTA */}
-        <div className="lg:col-span-7 space-y-6">
+        <div className="lg:col-span-7 space-y-5 sm:space-y-6">
           
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
             {PERSONAL_INFO.aboutEditorial}
           </h2>
 

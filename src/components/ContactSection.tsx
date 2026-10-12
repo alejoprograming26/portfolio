@@ -35,14 +35,14 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contacto" className="py-20 px-4 sm:px-6 max-w-6xl mx-auto">
+    <section id="contacto" className="py-16 sm:py-20 px-4 sm:px-6 max-w-6xl mx-auto">
       {/* Header */}
-      <div className="text-center max-w-2xl mx-auto mb-14">
+      <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
         <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-lime-400 mb-2">
           <MessageSquare className="w-3.5 h-3.5" />
           <span>Iniciar Colaboración</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-3 sm:mb-4">
           Hablemos de tu próximo proyecto
         </h2>
         <p className="text-xs sm:text-sm text-zinc-400 font-mono">

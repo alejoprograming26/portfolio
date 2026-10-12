@@ -22,23 +22,23 @@ export const ExperienceSection = () => {
   const filteredItems = EDUCATION_AND_EXPERIENCE.filter((item) => matchesFilter(item, filter));
 
   return (
-    <section id="estudios" className="py-20 px-4 sm:px-6 max-w-6xl mx-auto border-b border-zinc-900">
+    <section id="estudios" className="py-16 sm:py-20 px-4 sm:px-6 max-w-6xl mx-auto border-b border-zinc-900">
       
       {/* Header with Filter Controls */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-5 sm:gap-6">
         <div>
           <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-lime-400 mb-2">
             <GraduationCap className="w-3.5 h-3.5" />
             <span>Trayectoria &amp; Formación</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white">
             Experiencia &amp; Estudios
           </h2>
         </div>
 
         {/* Filter Toggle in Geist Pill Style */}
         <div
-          className="inline-flex p-1 rounded-full bg-zinc-900/80 border border-zinc-800 text-xs font-mono"
+          className="inline-flex p-1 rounded-full bg-zinc-900/80 border border-zinc-800 text-xs font-mono w-full sm:w-auto justify-between sm:justify-start"
           role="group"
           aria-label="Filtrar trayectoria"
         >
@@ -48,7 +48,7 @@ export const ExperienceSection = () => {
               type="button"
               aria-pressed={filter === value}
               onClick={() => setFilter(value)}
-              className={`px-3.5 py-1.5 rounded-full transition-colors cursor-pointer ${
+              className={`flex-1 sm:flex-initial text-center px-3.5 py-1.5 rounded-full transition-colors cursor-pointer ${
                 filter === value
                   ? 'bg-zinc-800 text-white shadow-sm'
                   : 'text-zinc-400 hover:text-white'

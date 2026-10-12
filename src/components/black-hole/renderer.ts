@@ -60,11 +60,12 @@ export function createRenderer({ canvas, centerX, centerY, distance }: RendererO
       mobileQuery.matches
         ? {
             centerX: 0,
-            centerY: 0.1,
-            cameraRoll: 0,
+            centerY: 0.18,
+            cameraRoll: -0.12,
+            cameraY: 0.22,
             mouseYaw: 0,
-            centerFade: 1,
-            distance: Math.max(settings.distance, 15),
+            centerFade: 0,
+            distance: 23.5,
           }
         : desktopLayout
     );

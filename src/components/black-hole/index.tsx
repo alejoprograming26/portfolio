@@ -75,16 +75,34 @@ export function VgpuBlackHole({
         </div>
       )}
 
-      {/* Fallback for environments without WebGPU acceleration */}
+      {/* Seamless cosmic singularity visual for devices or browsers without WebGPU */}
       {!webGpuSupported && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-zinc-950/95 border border-zinc-900">
-          <div className="w-14 h-14 rounded-full border border-zinc-800 bg-zinc-900/50 flex items-center justify-center mb-3">
-            <span className="text-xl">🌌</span>
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden bg-black/50">
+          {/* Gravitational lensing & accretion glow halo */}
+          <div className="relative flex items-center justify-center w-[300px] sm:w-[480px] h-[300px] sm:h-[480px] -mt-16 sm:mt-0">
+            {/* Outer cosmic glow */}
+            <div
+              className="absolute inset-0 rounded-full blur-3xl opacity-40 animate-pulse-slow"
+              style={{
+                background:
+                  'radial-gradient(circle, rgba(163, 230, 53, 0.35) 0%, rgba(34, 197, 94, 0.15) 45%, transparent 70%)',
+              }}
+            />
+            {/* Accretion disk tilt ring */}
+            <div
+              className="absolute w-[260px] sm:w-[420px] h-[90px] sm:h-[130px] rounded-full border border-lime-400/40 blur-[1px] shadow-[0_0_50px_rgba(163,230,53,0.35)] -rotate-12"
+              style={{
+                background:
+                  'radial-gradient(ellipse at center, rgba(163, 230, 53, 0.18) 0%, rgba(20, 83, 45, 0.05) 60%, transparent 80%)',
+              }}
+            />
+            {/* Secondary relativistic beam ring */}
+            <div className="absolute w-[220px] sm:w-[360px] h-[70px] sm:h-[100px] rounded-full border border-emerald-400/30 blur-[2px] -rotate-12" />
+            {/* Event Horizon (Pure Black Void) */}
+            <div className="relative w-24 sm:w-36 h-24 sm:h-36 rounded-full bg-black border-2 border-white/20 shadow-[0_0_35px_rgba(163,230,53,0.45)] flex items-center justify-center">
+              <div className="w-20 sm:w-32 h-20 sm:h-32 rounded-full bg-black shadow-inner" />
+            </div>
           </div>
-          <p className="text-xs font-mono font-medium text-zinc-300">VGPU • Agujero Negro</p>
-          <p className="text-[11px] text-zinc-500 mt-1 max-w-[220px]">
-            Requiere un navegador con WebGPU habilitado (Chrome 113+, Edge, Firefox Nightly).
-          </p>
         </div>
       )}
     </div>

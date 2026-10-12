@@ -28,9 +28,9 @@ export const HeroSection = () => {
     SPECIALTIES.find((spec) => spec.id === activeSpecialtyId) ?? SPECIALTIES[0];
 
   return (
-    <section id="inicio" className="relative pt-28 sm:pt-36 pb-16 px-4 sm:px-6 max-w-6xl mx-auto overflow-hidden">
+    <section id="inicio" className="relative pt-24 sm:pt-36 pb-12 sm:pb-16 px-3.5 sm:px-6 max-w-6xl mx-auto overflow-hidden">
       {/* Outer rounded container with subtle border and ambient glow */}
-      <div className="relative rounded-3xl bg-zinc-950/85 border border-white/10 shadow-2xl shadow-black overflow-hidden">
+      <div className="relative rounded-2xl sm:rounded-3xl bg-zinc-950/85 border border-white/10 shadow-2xl shadow-black overflow-hidden">
         {/* Subtle grid pattern background */}
         <div className="absolute inset-0 bg-dot-grid-subtle opacity-30 pointer-events-none" />
 
@@ -46,7 +46,7 @@ export const HeroSection = () => {
         {/* ============================================================ */}
         {/* 1. TOP HERO BLOCK: Alejandro Alvarez + Seamless VGPU Black Hole */}
         {/* ============================================================ */}
-        <div className="relative z-10 min-h-[480px] sm:min-h-[540px] px-6 sm:px-12 pt-14 sm:pt-20 pb-16 sm:pb-24 border-b border-white/5 overflow-hidden flex flex-col justify-center">
+        <div className="relative z-10 min-h-[580px] sm:min-h-[540px] px-5 sm:px-12 pt-14 sm:pt-20 pb-8 sm:pb-20 border-b border-white/5 overflow-hidden flex flex-col justify-end sm:justify-center">
           
           {/* Official VGPU Black Hole Canvas integrated seamlessly across hero background without any box/frame */}
           <div className="absolute inset-0 z-0 pointer-events-auto">
@@ -58,41 +58,60 @@ export const HeroSection = () => {
             />
           </div>
 
+          {/* Mobile bottom readability shadow (allows black hole to shine at the top while keeping text crisp) */}
+          <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black via-black/85 to-transparent sm:hidden pointer-events-none z-[5]" aria-hidden="true" />
+
           {/* Typography sitting cleanly in front of the cosmic accretion disk */}
           <div className="relative z-10 max-w-2xl flex flex-col text-left pointer-events-none">
             {/* Status Pill with live pulse */}
-            <div className="pointer-events-auto inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-zinc-900/90 border border-zinc-800 text-zinc-300 text-xs font-mono mb-6 w-fit shadow-lg shadow-black/50 backdrop-blur-md">
+            <div className="pointer-events-auto inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900/90 border border-zinc-700/80 text-xs font-mono mb-3 w-fit shadow-lg shadow-black/60 backdrop-blur-md">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-lime-400" />
               </span>
-              <span>{PERSONAL_INFO.titlePrefix}</span>
+              <span className="text-zinc-300 font-medium text-[11px] sm:text-xs">Software Engineer</span>
               <span className="text-zinc-600">•</span>
-              <span className="text-lime-400 font-semibold">{PERSONAL_INFO.role}</span>
+              <span className="text-lime-400 font-semibold text-[11px] sm:text-xs">Full-Stack Architect</span>
             </div>
 
-            {/* Display Name - Plus Jakarta Sans (Modern, ultra-clean, authoritative tech) */}
-            <div className="relative mb-4">
-              <h1 className="font-jakarta text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase leading-[1.05] select-none tracking-[-0.03em]">
-                <span className="block text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)]">
+            {/* Display Name - Modern, authoritative tech typography */}
+            <div className="relative mb-3">
+              <h1 className="font-jakarta text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[1.02] select-none tracking-[-0.035em]">
+                <span className="block text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
                   {PERSONAL_INFO.headlineMain}
                 </span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-lime-300 via-emerald-400 to-lime-500 drop-shadow-[0_0_20px_rgba(163,230,53,0.3)]">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-lime-300 via-emerald-400 to-lime-500 drop-shadow-[0_0_30px_rgba(163,230,53,0.35)]">
                   {PERSONAL_INFO.headlineSub}
                 </span>
               </h1>
             </div>
 
-            {/* Only GitHub link directly underneath the name */}
-            <div className="pt-1 pointer-events-auto">
+            {/* Core Skills Badge Deck under the name */}
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-4 pointer-events-auto">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-zinc-900/85 border border-zinc-800 text-[11px] font-mono text-zinc-300 backdrop-blur-md shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-lime-400" aria-hidden="true" />
+                React 19 &amp; TypeScript
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-zinc-900/85 border border-zinc-800 text-[11px] font-mono text-zinc-300 backdrop-blur-md shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" aria-hidden="true" />
+                Node.js Architecture
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-zinc-900/85 border border-zinc-800 text-[11px] font-mono text-zinc-300 backdrop-blur-md shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-lime-400" aria-hidden="true" />
+                High-Performance APIs
+              </span>
+            </div>
+
+            {/* Action buttons: GitHub link */}
+            <div className="flex flex-wrap items-center gap-2.5 pt-1 pointer-events-auto">
               <a
                 href={PERSONAL_INFO.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-4.5 py-2.5 rounded-full text-xs font-mono text-zinc-300 bg-zinc-900/90 border border-zinc-800 hover:border-lime-400/60 hover:text-lime-300 transition-[color,border-color,box-shadow] shadow-md hover:shadow-lime-500/10 group w-fit cursor-pointer backdrop-blur-md"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-mono text-zinc-300 bg-zinc-900/90 border border-zinc-800 hover:border-lime-400/60 hover:text-lime-300 transition-[color,border-color,box-shadow] shadow-md hover:shadow-lime-500/10 group cursor-pointer backdrop-blur-md"
                 aria-label={`Perfil de GitHub: ${PERSONAL_INFO.githubHandle} (se abre en una pestaña nueva)`}
               >
-                <GithubIcon className="w-4 h-4 text-zinc-400 group-hover:text-lime-400 transition-colors" />
+                <GithubIcon className="w-3.5 h-3.5 text-zinc-400 group-hover:text-lime-400 transition-colors" />
                 <span className="tracking-tight">{PERSONAL_INFO.githubHandle}</span>
               </a>
             </div>
@@ -102,16 +121,16 @@ export const HeroSection = () => {
         {/* ============================================================ */}
         {/* 2. DEDICATED & REDESIGNED SPECIALTIES SECTION                */}
         {/* ============================================================ */}
-        <div id="especialidades" className="relative z-10 px-6 sm:px-12 py-10 sm:py-14 bg-black/40 backdrop-blur-md">
+        <div id="especialidades" className="relative z-10 px-4 sm:px-12 py-8 sm:py-14 bg-black/40 backdrop-blur-md">
           
           {/* Section Sub-header with generous separation */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 mb-6 sm:mb-8">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-lime-400 mb-2">
                 <Terminal className="w-3.5 h-3.5" />
                 <span>#01 — #04 Áreas de Especialización</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+              <h2 className="text-xl sm:text-3xl font-extrabold tracking-tight text-white">
                 Dominio Técnico &amp; Arquitectura
               </h2>
             </div>
@@ -121,7 +140,7 @@ export const HeroSection = () => {
           </div>
 
           {/* 4 Cards Grid with Elevated Design */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-5 sm:mb-6">
             {SPECIALTIES.map((spec) => {
               const isSelected = activeSpecialty.id === spec.id;
               const SpecIcon = (spec.icon && SPECIALTY_ICONS[spec.icon]) || Cpu;
@@ -131,7 +150,7 @@ export const HeroSection = () => {
                   type="button"
                   aria-pressed={isSelected}
                   onClick={() => setActiveSpecialtyId(spec.id)}
-                  className={`text-left p-5 rounded-2xl border transition-[background-color,border-color,box-shadow,translate] duration-200 relative group cursor-pointer flex flex-col justify-between min-h-[140px] ${
+                  className={`text-left p-4 sm:p-5 rounded-2xl border transition-[background-color,border-color,box-shadow,translate] duration-200 relative group cursor-pointer flex flex-col justify-between min-h-[125px] sm:min-h-[140px] ${
                     isSelected
                       ? 'bg-zinc-900/95 border-lime-400/80 shadow-xl shadow-lime-400/10 -translate-y-0.5'
                       : 'bg-zinc-950/60 border-zinc-800/80 hover:bg-zinc-900/50 hover:border-zinc-700'
@@ -175,7 +194,7 @@ export const HeroSection = () => {
 
           {/* Expanded Rich Details Panel for Active Specialty */}
           <div
-            className="p-6 sm:p-8 rounded-2xl bg-zinc-950/90 border border-zinc-800/90 shadow-2xl relative overflow-hidden"
+            className="p-5 sm:p-8 rounded-2xl bg-zinc-950/90 border border-zinc-800/90 shadow-2xl relative overflow-hidden"
             aria-live="polite"
           >
             
@@ -186,7 +205,7 @@ export const HeroSection = () => {
               aria-hidden="true"
             />
 
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
               
               {/* Left Column: Deep Focus & Engineering Highlights */}
               <div className="lg:col-span-7 space-y-4">
