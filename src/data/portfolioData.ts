@@ -23,6 +23,9 @@ export const PERSONAL_INFO = {
   location: 'Remoto / Global',
   experienceYears: '+5 años de experiencia',
   avatarImage: '/hero-portrait.jpg',
+  email: 'joseale260403@gmail.com',
+  githubUrl: 'https://github.com/alejoprograming26',
+  githubHandle: 'github.com/alejoprograming26',
 };
 
 export const SPECIALTIES: Specialty[] = [
@@ -228,9 +231,9 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     name: 'Email Directo',
-    label: 'contact@alexrivera.dev',
-    url: 'mailto:contact@alexrivera.dev',
-    handle: 'contact@alexrivera.dev',
+    label: 'joseale260403@gmail.com',
+    url: 'mailto:joseale260403@gmail.com',
+    handle: 'joseale260403@gmail.com',
     icon: 'mail',
   },
 ];

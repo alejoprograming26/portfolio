@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Briefcase, GraduationCap, Award, Calendar, MapPin } from 'lucide-react';
 import { EDUCATION_AND_EXPERIENCE } from '../data/portfolioData';
+import type { EducationExperienceItem } from '../types/portfolio';
 
-export const ExperienceSection: React.FC = () => {
-  const [filter, setFilter] = useState<'all' | 'experience' | 'education'>('all');
+type Filter = 'all' | 'experience' | 'education';
 
-  const filteredItems = EDUCATION_AND_EXPERIENCE.filter((item) => {
-    if (filter === 'all') return true;
-    if (filter === 'experience') return item.type === 'experience';
-    if (filter === 'education') return item.type === 'education' || item.type === 'certification';
-    return true;
-  });
+const FILTERS: ReadonlyArray<{ value: Filter; label: string }> = [
+  { value: 'all', label: 'Todo' },
+  { value: 'experience', label: 'Experiencia' },
+  { value: 'education', label: 'Educación' },
+];
+
+const matchesFilter = (item: EducationExperienceItem, filter: Filter) => {
+  if (filter === 'experience') return item.type === 'experience';
+  if (filter === 'education') return item.type === 'education' || item.type === 'certification';
+  return true;
+};
+
+export const ExperienceSection = () => {
+  const [filter, setFilter] = useState<Filter>('all');
+  const filteredItems = EDUCATION_AND_EXPERIENCE.filter((item) => matchesFilter(item, filter));
 
   return (
     <section id="estudios" className="py-20 px-4 sm:px-6 max-w-6xl mx-auto border-b border-zinc-900">
@@ -28,40 +37,26 @@ export const ExperienceSection: React.FC = () => {
         </div>
 
         {/* Filter Toggle in Geist Pill Style */}
-        <div className="inline-flex p-1 rounded-full bg-zinc-900/80 border border-zinc-800 text-xs font-mono">
-          <button
-            type="button"
-            onClick={() => setFilter('all')}
-            className={`px-3.5 py-1.5 rounded-full transition-colors cursor-pointer ${
-              filter === 'all'
-                ? 'bg-zinc-800 text-white shadow-sm'
-                : 'text-zinc-400 hover:text-white'
-            }`}
-          >
-            Todo
-          </button>
-          <button
-            type="button"
-            onClick={() => setFilter('experience')}
-            className={`px-3.5 py-1.5 rounded-full transition-colors cursor-pointer ${
-              filter === 'experience'
-                ? 'bg-zinc-800 text-white shadow-sm'
-                : 'text-zinc-400 hover:text-white'
-            }`}
-          >
-            Experiencia
-          </button>
-          <button
-            type="button"
-            onClick={() => setFilter('education')}
-            className={`px-3.5 py-1.5 rounded-full transition-colors cursor-pointer ${
-              filter === 'education'
-                ? 'bg-zinc-800 text-white shadow-sm'
-                : 'text-zinc-400 hover:text-white'
-            }`}
-          >
-            Educación
-          </button>
+        <div
+          className="inline-flex p-1 rounded-full bg-zinc-900/80 border border-zinc-800 text-xs font-mono"
+          role="group"
+          aria-label="Filtrar trayectoria"
+        >
+          {FILTERS.map(({ value, label }) => (
+            <button
+              key={value}
+              type="button"
+              aria-pressed={filter === value}
+              onClick={() => setFilter(value)}
+              className={`px-3.5 py-1.5 rounded-full transition-colors cursor-pointer ${
+                filter === value
+                  ? 'bg-zinc-800 text-white shadow-sm'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              {label}
+            </button>
+          ))}
         </div>
       </div>
 

@@ -1,15 +1,14 @@
-import React from 'react';
 import { ArrowUpRight, ShieldCheck, Terminal, Zap, MapPin } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
-export const AboutSection: React.FC = () => {
+export const AboutSection = () => {
   return (
     <section id="sobre-mi" className="py-24 px-4 sm:px-6 max-w-6xl mx-auto border-b border-zinc-900">
       
       {/* Section Header Tag */}
       <div className="flex items-center justify-between mb-12">
         <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-lime-400">
-          <span className="w-2 h-2 rounded-full bg-lime-400 animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-lime-400 animate-pulse" aria-hidden="true" />
           <span>Perfil Técnico &amp; Filosofía de Ingeniería</span>
         </div>
         <span className="text-xs font-mono text-zinc-500 hidden sm:inline">
@@ -36,9 +35,12 @@ export const AboutSection: React.FC = () => {
             <div className="relative w-full h-full rounded-2xl overflow-hidden bg-zinc-900">
               <img
                 src={PERSONAL_INFO.avatarImage}
-                alt={PERSONAL_INFO.name}
-                className="w-full h-full object-cover object-top filter grayscale contrast-110 group-hover:grayscale-0 transition-all duration-700"
+                alt={`Retrato de ${PERSONAL_INFO.name}`}
+                width={384}
+                height={512}
+                className="w-full h-full object-cover object-top filter grayscale contrast-110 group-hover:grayscale-0 transition-[filter] duration-700"
                 loading="lazy"
+                decoding="async"
               />
 
               {/* Bottom Gradient Overlay */}
@@ -108,7 +110,7 @@ export const AboutSection: React.FC = () => {
           {/* Status badge with pulsating neon green light + Direct CTA */}
           <div className="p-4 rounded-xl bg-zinc-950/80 border border-zinc-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <span className="relative flex h-3 w-3">
+              <span className="relative flex h-3 w-3" aria-hidden="true">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-lime-500" />
               </span>
@@ -124,7 +126,7 @@ export const AboutSection: React.FC = () => {
 
             <a
               href="#contacto"
-              className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-bold tracking-tight bg-gradient-to-r from-lime-400 to-emerald-400 text-black hover:brightness-110 shadow-md shadow-lime-400/20 transition-all duration-150 whitespace-nowrap cursor-pointer"
+              className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-bold tracking-tight bg-gradient-to-r from-lime-400 to-emerald-400 text-black hover:brightness-110 shadow-md shadow-lime-400/20 transition-[filter] duration-150 whitespace-nowrap cursor-pointer"
             >
               <span>Iniciar Contacto</span>
               <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

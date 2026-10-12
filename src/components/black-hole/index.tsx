@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useRef, useState } from "react";
 import { createRenderer } from "./renderer";
 
@@ -10,7 +8,9 @@ export interface VgpuBlackHoleProps {
   distance?: number;
 }
 
-/** Official VGPU Black Hole simulation component */
+const canUseWebGpu = () => typeof navigator !== "undefined" && "gpu" in navigator;
+
+/** Official VGPU Black Hole simulation component (decorative background) */
 export function VgpuBlackHole({
   className = "",
   centerX = 0,
@@ -19,9 +19,7 @@ export function VgpuBlackHole({
 }: VgpuBlackHoleProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isReady, setIsReady] = useState(false);
-  const [webGpuSupported, setWebGpuSupported] = useState(() => {
-    return typeof navigator !== "undefined" && "gpu" in navigator;
-  });
+  const [webGpuSupported, setWebGpuSupported] = useState(canUseWebGpu);
 
   useEffect(() => {
     if (!webGpuSupported) return;
@@ -55,7 +53,7 @@ export function VgpuBlackHole({
   }, [centerX, centerY, distance, webGpuSupported]);
 
   return (
-    <div className={`relative h-full w-full overflow-hidden select-none ${className}`}>
+    <div className={`relative h-full w-full overflow-hidden select-none ${className}`} aria-hidden="true">
       <canvas
         ref={canvasRef}
         className={`block h-full w-full touch-none transition-opacity duration-1000 ${
@@ -93,5 +91,4 @@ export function VgpuBlackHole({
   );
 }
 
-export const Example = VgpuBlackHole;
 export default VgpuBlackHole;

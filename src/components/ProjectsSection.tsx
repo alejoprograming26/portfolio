@@ -1,9 +1,8 @@
-import React from 'react';
 import { ExternalLink, ArrowUpRight, FolderGit2 } from 'lucide-react';
 import { GithubIcon } from './BrandIcons';
-import { PROJECTS } from '../data/portfolioData';
+import { PERSONAL_INFO, PROJECTS } from '../data/portfolioData';
 
-export const ProjectsSection: React.FC = () => {
+export const ProjectsSection = () => {
   return (
     <section id="proyectos" className="py-20 px-4 sm:px-6 max-w-6xl mx-auto border-b border-zinc-900">
       
@@ -28,18 +27,21 @@ export const ProjectsSection: React.FC = () => {
         {PROJECTS.map((project) => (
           <article
             key={project.id}
-            className="group relative flex flex-col rounded-3xl bg-zinc-950 border border-zinc-800/80 hover:border-zinc-700 transition-all duration-300 overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-lime-400/5"
+            className="group relative flex flex-col rounded-3xl bg-zinc-950 border border-zinc-800/80 hover:border-zinc-700 transition-[border-color,box-shadow] duration-300 overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-lime-400/5"
           >
             {/* Top Image Container */}
             <div className="relative aspect-[4/3] w-full overflow-hidden bg-zinc-900">
               <img
                 src={project.imageUrl}
-                alt={project.title}
-                className="w-full h-full object-cover object-center grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                alt={`Vista previa del proyecto ${project.title}`}
+                width={900}
+                height={675}
+                className="w-full h-full object-cover object-center grayscale group-hover:grayscale-0 group-hover:scale-105 transition-[filter,scale] duration-500"
                 loading="lazy"
+                decoding="async"
               />
               
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" aria-hidden="true" />
 
               <div className="absolute top-3.5 left-3.5 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/10 text-xs font-mono font-medium text-lime-400">
                 {project.number}
@@ -50,7 +52,7 @@ export const ProjectsSection: React.FC = () => {
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Ver código de ${project.title}`}
+                  aria-label={`Ver código de ${project.title} en GitHub (se abre en una pestaña nueva)`}
                   className="p-2 rounded-full bg-black/75 backdrop-blur-md border border-white/10 text-zinc-400 hover:text-white hover:border-zinc-600 transition-colors"
                 >
                   <GithubIcon className="w-3.5 h-3.5" />
@@ -60,7 +62,7 @@ export const ProjectsSection: React.FC = () => {
                     href={project.liveDemoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`Ver demo de ${project.title}`}
+                    aria-label={`Ver demo de ${project.title} (se abre en una pestaña nueva)`}
                     className="p-2 rounded-full bg-black/75 backdrop-blur-md border border-white/10 text-zinc-400 hover:text-white hover:border-zinc-600 transition-colors"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -106,7 +108,7 @@ export const ProjectsSection: React.FC = () => {
 
       <div className="mt-12 text-center">
         <a
-          href="https://github.com"
+          href={PERSONAL_INFO.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900/80 border border-zinc-800 text-xs font-mono text-zinc-300 hover:text-white hover:border-zinc-700 transition-colors duration-150"

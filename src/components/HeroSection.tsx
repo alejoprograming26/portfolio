@@ -8,32 +8,27 @@ import {
   Check,
   Cpu,
   Terminal,
+  type LucideIcon,
 } from 'lucide-react';
 import { GithubIcon } from './BrandIcons.tsx';
 import type { Specialty } from '../types/portfolio';
 import { PERSONAL_INFO, SPECIALTIES } from '../data/portfolioData';
 import { VgpuBlackHole } from './black-hole/index.tsx';
 
-export const HeroSection = () => {
-  const [activeSpecialty, setActiveSpecialty] = useState<Specialty>(SPECIALTIES[0]);
+const SPECIALTY_ICONS: Record<NonNullable<Specialty['icon']>, LucideIcon> = {
+  server: Server,
+  layout: Layout,
+  database: Database,
+  cloud: Cloud,
+};
 
-  const getSpecialtyIcon = (type?: string) => {
-    switch (type) {
-      case 'server':
-        return <Server className="w-4 h-4" />;
-      case 'layout':
-        return <Layout className="w-4 h-4" />;
-      case 'database':
-        return <Database className="w-4 h-4" />;
-      case 'cloud':
-        return <Cloud className="w-4 h-4" />;
-      default:
-        return <Cpu className="w-4 h-4" />;
-    }
-  };
+export const HeroSection = () => {
+  const [activeSpecialtyId, setActiveSpecialtyId] = useState(SPECIALTIES[0].id);
+  const activeSpecialty =
+    SPECIALTIES.find((spec) => spec.id === activeSpecialtyId) ?? SPECIALTIES[0];
 
   return (
-    <section className="relative pt-28 sm:pt-36 pb-16 px-4 sm:px-6 max-w-6xl mx-auto overflow-hidden">
+    <section id="inicio" className="relative pt-28 sm:pt-36 pb-16 px-4 sm:px-6 max-w-6xl mx-auto overflow-hidden">
       {/* Outer rounded container with subtle border and ambient glow */}
       <div className="relative rounded-3xl bg-zinc-950/85 border border-white/10 shadow-2xl shadow-black overflow-hidden">
         {/* Subtle grid pattern background */}
@@ -91,14 +86,14 @@ export const HeroSection = () => {
             {/* Only GitHub link directly underneath the name */}
             <div className="pt-1 pointer-events-auto">
               <a
-                href="https://github.com/alejoprograming26"
+                href={PERSONAL_INFO.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-4.5 py-2.5 rounded-full text-xs font-mono text-zinc-300 bg-zinc-900/90 border border-zinc-800 hover:border-lime-400/60 hover:text-lime-300 transition-all shadow-md hover:shadow-lime-500/10 group w-fit cursor-pointer backdrop-blur-md"
-                title="GitHub Profile"
+                className="inline-flex items-center gap-2.5 px-4.5 py-2.5 rounded-full text-xs font-mono text-zinc-300 bg-zinc-900/90 border border-zinc-800 hover:border-lime-400/60 hover:text-lime-300 transition-[color,border-color,box-shadow] shadow-md hover:shadow-lime-500/10 group w-fit cursor-pointer backdrop-blur-md"
+                aria-label={`Perfil de GitHub: ${PERSONAL_INFO.githubHandle} (se abre en una pestaña nueva)`}
               >
                 <GithubIcon className="w-4 h-4 text-zinc-400 group-hover:text-lime-400 transition-colors" />
-                <span className="tracking-tight">github.com/alejoprograming26</span>
+                <span className="tracking-tight">{PERSONAL_INFO.githubHandle}</span>
               </a>
             </div>
           </div>
@@ -129,12 +124,14 @@ export const HeroSection = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             {SPECIALTIES.map((spec) => {
               const isSelected = activeSpecialty.id === spec.id;
+              const SpecIcon = (spec.icon && SPECIALTY_ICONS[spec.icon]) || Cpu;
               return (
                 <button
                   key={spec.id}
                   type="button"
-                  onClick={() => setActiveSpecialty(spec)}
-                  className={`text-left p-5 rounded-2xl border transition-all duration-200 relative group cursor-pointer flex flex-col justify-between min-h-[140px] ${
+                  aria-pressed={isSelected}
+                  onClick={() => setActiveSpecialtyId(spec.id)}
+                  className={`text-left p-5 rounded-2xl border transition-[background-color,border-color,box-shadow,translate] duration-200 relative group cursor-pointer flex flex-col justify-between min-h-[140px] ${
                     isSelected
                       ? 'bg-zinc-900/95 border-lime-400/80 shadow-xl shadow-lime-400/10 -translate-y-0.5'
                       : 'bg-zinc-950/60 border-zinc-800/80 hover:bg-zinc-900/50 hover:border-zinc-700'
@@ -153,7 +150,7 @@ export const HeroSection = () => {
                         ? 'bg-lime-400/15 text-lime-400 border border-lime-400/30' 
                         : 'bg-zinc-900 text-zinc-400 group-hover:text-zinc-200 border border-zinc-800'
                     }`}>
-                      {getSpecialtyIcon(spec.icon)}
+                      <SpecIcon className="w-4 h-4" />
                     </span>
                   </div>
 
@@ -169,7 +166,7 @@ export const HeroSection = () => {
 
                   {/* Active bottom line indicator */}
                   {isSelected && (
-                    <span className="absolute bottom-0 left-6 right-6 h-[2px] bg-gradient-to-r from-lime-400 to-emerald-400 rounded-full" />
+                    <span className="absolute bottom-0 left-6 right-6 h-[2px] bg-gradient-to-r from-lime-400 to-emerald-400 rounded-full" aria-hidden="true" />
                   )}
                 </button>
               );
@@ -177,7 +174,10 @@ export const HeroSection = () => {
           </div>
 
           {/* Expanded Rich Details Panel for Active Specialty */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-zinc-950/90 border border-zinc-800/90 shadow-2xl relative overflow-hidden">
+          <div
+            className="p-6 sm:p-8 rounded-2xl bg-zinc-950/90 border border-zinc-800/90 shadow-2xl relative overflow-hidden"
+            aria-live="polite"
+          >
             
             {/* Ambient accent inside card */}
             <div 
@@ -209,8 +209,8 @@ export const HeroSection = () => {
                 {/* Highlights List */}
                 {activeSpecialty.highlights && (
                   <ul className="space-y-2 pt-2">
-                    {activeSpecialty.highlights.map((item, idx) => (
-                      <li key={idx} className="flex items-center gap-2.5 text-xs font-mono text-zinc-300">
+                    {activeSpecialty.highlights.map((item) => (
+                      <li key={item} className="flex items-center gap-2.5 text-xs font-mono text-zinc-300">
                         <span className="w-4 h-4 rounded-full bg-zinc-900 border border-lime-400/40 flex items-center justify-center text-lime-400 shrink-0">
                           <Check className="w-2.5 h-2.5" />
                         </span>
