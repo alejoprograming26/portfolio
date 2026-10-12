@@ -22,7 +22,7 @@ export const PERSONAL_INFO = {
     'Ingeniero de software enfocado en la convergencia entre rendimiento crítico, código tipado estrictamente y experiencias de usuario fluidas. Mi enfoque combina pragmatismo arquitectónico con una estética minimalista "developer-first".',
   location: 'Remoto / Global',
   experienceYears: '+5 años de experiencia',
-  avatarImage: '/hero-portrait.jpg',
+  avatarImage: '/alejandro-alvarez.jpg',
   email: 'joseale260403@gmail.com',
   githubUrl: 'https://github.com/alejoprograming26',
   githubHandle: 'github.com/alejoprograming26',
